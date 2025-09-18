@@ -2,10 +2,7 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  wrapQtAppsHook,
-  qtquickcontrols2,
-  qtgraphicaleffects,
-  qtsvg
+  libsForQt5,
 }:
 
 stdenv.mkDerivation rec {
@@ -15,12 +12,10 @@ stdenv.mkDerivation rec {
   src = ./.;
 
   propagatedUserEnvPkgs = [
-    qtgraphicaleffects
-    qtquickcontrols2
-    qtsvg
+    libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtsvg
   ];
-
-  buildInputs = [ wrapQtAppsHook ];
 
   dontBuild = true;
   installPhase = ''
@@ -33,5 +28,5 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/TiagoDamascena/sddm-sugar-catppuccin";
     license = licenses.gpl3Only;
     platforms = platforms.all;
-  }; 
+  };
 }
